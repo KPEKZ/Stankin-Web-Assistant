@@ -9,6 +9,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
+import { TuiDestroyService } from '@taiga-ui/cdk';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -23,13 +31,36 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatListModule,
     MatButtonModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatMenuModule,
+    MatDividerModule
   ],
-  providers: [BackendApiService],
-  exports: [NotFoundComponent, AuthComponent, HeaderComponent,MatSidenavModule,MatToolbarModule,
+  providers: [
+    BackendApiService,
+    TuiDestroyService
+  ],
+  exports: [
+    NotFoundComponent,
+    AuthComponent,
+    HeaderComponent,
+    MatSidenavModule,
+    MatToolbarModule,
     MatListModule,
     MatButtonModule,
     MatIconModule,
-    MatSidenavModule]
+    MatSidenavModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatMenuModule,
+    MatDividerModule
+  ]
 })
 export class SharedModule { }
