@@ -1,11 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { MonoTypeOperatorFunction, Observable } from 'rxjs';
 import { Employee } from '../models/employee';
 import { EmployeeDto } from '../models/employee-dto';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class BackendApiService {
+  pipe(arg0: MonoTypeOperatorFunction<unknown>) {
+    throw new Error('Method not implemented.');
+  }
   private _stankinUrl = 'https://rinh-api.kovalev.team/';
 
   constructor(private readonly _http: HttpClient) {}
