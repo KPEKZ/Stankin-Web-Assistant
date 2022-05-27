@@ -1,0 +1,23 @@
+<mat-toolbar class="header" color="primary">
+  <button mat-flat-button (click)="onToggle()" color="primary" ><mat-icon>menu</mat-icon></button>
+  <span class="header-brand">Stankin Web Assistant</span>
+  <mat-list class="header-navigation">
+    <mat-list-item>
+      <a class="navigation-link" mat-button routerLink="/auth" routerLinkActive="active">Authentication</a>
+    </mat-list-item>
+    <mat-list-item>
+      <button class="button" mat-button>Logout</button>
+    </mat-list-item>
+  </mat-list>
+  <mat-list class="header-actions">
+    <mat-list-item>
+      <mat-icon>search</mat-icon>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon>more_vert</mat-icon>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon>account_circle</mat-icon>
+    </mat-list-item>
+  </mat-list>
+</mat-toolbar>

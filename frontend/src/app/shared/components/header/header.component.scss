@@ -1,0 +1,23 @@
+:host {
+
+  .header {
+    .header-brand {
+      padding-left: 10px;
+    }
+
+    .header-navigation, .header-actions {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header-actions {
+      width: 100%;
+      justify-content: flex-end;
+      mat-list-item {
+        width: min-content;
+      }
+    }
+  }
+
+}
