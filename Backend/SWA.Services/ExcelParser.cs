@@ -29,8 +29,15 @@ namespace SWA.Services
                             {
                                 if(str[j].Text.Replace(" ","") == GroupName)
                                 {
-                                    return GroupName;
-								}
+                                    var str2 = workSheet.Cells[str[j].Start.Row + 1, 3, workSheet.Dimension.End.Row, 4].ToList();
+                                        for(int k = 0; k < str2.Count; k++)
+                                        {
+                                            if(str2[k].Style.Font.Bold)
+                                            {
+                                                return str2[k].Text + " " + str2[k+1].Text + " " + str2[k+2].Text;
+											}
+										}
+                                }
                             }
                         }
                     }

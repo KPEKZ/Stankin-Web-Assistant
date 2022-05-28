@@ -74,6 +74,25 @@ namespace SWA.Database.Repositories.UserInfoRepository
 			}
 
 		}
+		public async Task<UserInfo> GetUserInfoAsyncById(int Id)
+		{
+			try
+			{
+				var userInfoId = await _context.UserInfo
+				.FirstOrDefaultAsync(c => c.UserID == Id);
+
+				if (userInfoId == null)
+					throw new Exception($"No user");
+
+				return userInfoId;
+			}
+			catch
+			{
+				throw new Exception($"Error");
+			}
+
+		}
+
 		public async Task<int> CreateUserInfoAsync(UserInfoDto UserInfo)
         {
 			try

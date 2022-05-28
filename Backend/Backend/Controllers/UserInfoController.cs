@@ -14,6 +14,23 @@ namespace Backend.Controllers
             _userInfoRepository = userInfoRepository;
         }
 
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetUserInfo(int Id)
+        {
+            IActionResult response;
+            try
+            {
+                var userInfoDto = await _userInfoRepository.GetUserInfoAsyncById(Id);
+                response = Ok(userInfoDto);
+            }
+            catch (Exception ex)
+            {
+                response = StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+            return response;
+        }
+
         [HttpGet("{Login}/{Password}")]
         public async Task<IActionResult> GetUserInfo(string Login, string Password)
         {
