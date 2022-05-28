@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TuiDestroyService } from '@taiga-ui/cdk/services';
+import { takeUntil } from 'rxjs';
 import { BackendApiService } from '../../services/backend-api.service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -14,7 +17,9 @@ export class AuthComponent implements OnInit {
 
   constructor(
     private readonly _backendApi: BackendApiService,
-    private readonly _router : Router
+    private readonly _router : Router,
+    private readonly _destroy$: TuiDestroyService,
+    private readonly _auth: AuthService
   ) {
     this.form = new FormGroup({
       "Login": new FormControl(null, Validators.required),
@@ -55,7 +60,9 @@ export class AuthComponent implements OnInit {
   }
 
   public login(): void {
-
+    if (this.form.value.Login && this.form.value.Password) {
+      this._auth.login(this.form.value.Login,this.form.value.Password);
+    }
   }
 
   public onSwitch(): void {
