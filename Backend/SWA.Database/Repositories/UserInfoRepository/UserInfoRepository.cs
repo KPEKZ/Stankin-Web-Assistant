@@ -2,7 +2,6 @@
 using DatabasesSWA.ModelsDto.Dto;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace SWA.Database.Repositories.UserInfoRepository
 {
     public class UserInfoRepository : BaseRepository, IUserInfoRepository
@@ -31,6 +30,18 @@ namespace SWA.Database.Repositories.UserInfoRepository
 
 				if (userInfo.PhoneNumber != UserInfo.PhoneNumber)
 					userInfo.PhoneNumber = UserInfo.PhoneNumber;
+
+				if (userInfo.Login != UserInfo.Login)
+					userInfo.Login = UserInfo.Login;
+
+				if (userInfo.Password != UserInfo.Password)
+					userInfo.Password = UserInfo.Password;
+
+				if (userInfo.RoleName != UserInfo.RoleName)
+					userInfo.RoleName = UserInfo.RoleName;
+
+				if (userInfo.Permission != UserInfo.Permission)
+					userInfo.Permission = UserInfo.Permission;
 
 				_context.UserInfo.Update(userInfo);
 				await _context.SaveChangesAsync();
@@ -70,7 +81,12 @@ namespace SWA.Database.Repositories.UserInfoRepository
 					FirstName = UserInfo.FirstName,
 					SecondName = UserInfo.SecondName,
 					Patronymic = UserInfo.Patronymic,
-					PhoneNumber = UserInfo.PhoneNumber
+					PhoneNumber = UserInfo.PhoneNumber,
+					Group = UserInfo.Group,
+					Login = UserInfo.Login,
+					Password = UserInfo.Password,
+					RoleName = UserInfo.RoleName,
+					Permission = UserInfo.Permission
 				};
 
 				await _context.UserInfo.AddAsync(userInfo);

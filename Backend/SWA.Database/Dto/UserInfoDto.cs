@@ -22,5 +22,20 @@ namespace DatabasesSWA.ModelsDto.Dto
 
         [JsonProperty("PhoneNumber")]
         public string PhoneNumber { get; set; }
+
+        [JsonProperty("Group")]
+        public string Group { get; set; }
+
+        [JsonProperty("Login")]
+        public string Login { get; set; }
+
+        [JsonProperty("Password")]
+        public string Password { get; set; }
+
+        [JsonProperty("RoleName")]
+        public string RoleName { get; set; }
+
+        [JsonProperty("Permission")]
+        public string Permission { get; set; }
     }
 }

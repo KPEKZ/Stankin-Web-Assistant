@@ -1,8 +1,6 @@
 ﻿using SWA.Database;
 using Microsoft.EntityFrameworkCore;
 using SWA.Database.Repositories.UserInfoRepository;
-using SWA.Database.Repositories.UserAuthDataRepository;
-using SWA.Database.Repositories.RolesRepository;
 
 namespace Backend
 {
@@ -24,8 +22,6 @@ namespace Backend
 			);
 
 			services.AddTransient<IUserInfoRepository, UserInfoRepository>();
-			services.AddTransient<IUserAuthDataRepository, UserAuthDataRepository>();
-			services.AddTransient<IRolesRepository, RolesRepository>();
 
 			services.AddControllers();
 			services.AddHealthChecks();
