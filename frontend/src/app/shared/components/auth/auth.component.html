@@ -41,7 +41,8 @@
       </mat-select>
     </mat-form-field>
     <div class="auth-form__actions">
-      <button type="submit" mat-raised-button>{{isLogin ? 'Войти' : 'Зарегистрироваться'}}</button>
+      <button type="submit" *ngIf="isLogin"(click)="login()" mat-raised-button>Войти</button>
+      <button type="submit" *ngIf="!isLogin"(click)="register()"mat-raised-button >Зарегистрироваться</button>
       <button type="button" mat-raised-button (click)="onSwitch()">Переключиться на {{!isLogin ? 'вход' : 'регистрацию'}}</button>
     </div>
 </form>

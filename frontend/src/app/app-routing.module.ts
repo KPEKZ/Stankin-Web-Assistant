@@ -4,6 +4,7 @@ import { ProblemComponent } from './components/problem/problem.component';
 import { ReferenceComponent } from './components/reference/reference.component';
 import { TeacherComponent } from './components/teacher/teacher.component';
 import { AuthComponent } from './shared/components/auth/auth.component';
+import { AuthGuard } from './shared/components/auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,15 +13,18 @@ const routes: Routes = [
   },
   {
     path: 'teachers',
-    component: TeacherComponent
+    component: TeacherComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'references',
-    component: ReferenceComponent
+    component: ReferenceComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'problems',
-    component: ProblemComponent
+    component: ProblemComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

@@ -31,6 +31,8 @@ export class BackendApiService {
     this._http.post(this._localhost + 'UserInfo',userInfo).subscribe();
   }
 
-
+  public loginUserInfo(login: string, password: string): Observable<UserInfo> {
+    return this._http.get<UserInfo>(this._localhost + `UserInfo/${login}/${password}`)
+  }
 
 }
