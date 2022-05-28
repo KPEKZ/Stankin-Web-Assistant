@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserInfoGet } from '../../models/user-info-get';
 import { BackendApiService } from '../../services/backend-api.service';
 import { AuthService } from '../auth/auth.service';
@@ -29,7 +30,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private readonly _backendApi: BackendApiService,
-    private readonly _auth: AuthService
+    private readonly _auth: AuthService,
+    private readonly _router: Router
     ) {
       this._auth.userId.subscribe(id => {
         this.userId = id;
@@ -43,5 +45,22 @@ export class HeaderComponent implements OnInit {
   onToggle() : void {
     this._isToggled = !this._isToggled;
     this.toggleEvent.emit(this._isToggled);
+  }
+
+  onLogout(): void {
+    this.user = {
+      login: '',
+      password: '',
+      e_mail: '',
+      firstName: '',
+      secondName: '',
+      patronymic: '',
+      phoneNumber: '',
+      group: '',
+      roleName: '',
+      permission: ''
+    };
+
+    this._router.navigate(['/auth']);
   }
 }
