@@ -30,11 +30,16 @@ namespace SWA.Database.Repositories.ExcelRepository
 			}
 		}
 
-		public async Task<string> GetListGroupAsync(string GroupName, int Id)
+		public async Task<string> GetListGroupAsync(int Id, int Year)
 		{
 			try
 			{
-				return await Task.Run(() => ExcelParser.SearchListGroupsDocumentById(GroupName, Id));
+				var userInfo = await _context.UserInfo.FirstOrDefaultAsync(c => c.UserID == Id);
+
+				if (userInfo == null)
+					throw new Exception($"Error");
+
+				return await Task.Run(() => ExcelParser.SearchListGroupsDocumentById(userInfo.Group, Year));
 			}
 			catch
 			{

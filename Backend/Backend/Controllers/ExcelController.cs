@@ -30,13 +30,13 @@ namespace Backend.Controllers
             return response;
         }
 
-        [HttpGet("ListGroup/{GroupName}/{Id}")]
-        public async Task<IActionResult> GetListGroup(string GroupName, int Id)
+        [HttpGet("ListGroup/{Id}/{Year}")]
+        public async Task<IActionResult> GetListGroup(int Id, int Year)
         {
             IActionResult response;
             try
             {
-                var userInfoDto = await _excelRepository.GetListGroupAsync(GroupName, Id);
+                var userInfoDto = await _excelRepository.GetListGroupAsync(Id, Year);
                 response = Ok(userInfoDto);
             }
             catch (Exception ex)

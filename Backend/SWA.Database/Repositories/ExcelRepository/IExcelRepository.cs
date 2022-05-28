@@ -10,7 +10,7 @@ namespace SWA.Database.Repositories.ExcelRepository
 	public interface IExcelRepository
 	{
 		Task<string> GetHeadMenAsync(int Id, int Year);
-		Task<string> GetListGroupAsync(string GroupName, int Id);
+		Task<string> GetListGroupAsync(int Id, int Year);
 		Task<string> GetProgressAsync(int Id);
 		Task<string> GetCuratorsAsync(int Id);
 	}
