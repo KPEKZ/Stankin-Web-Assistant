@@ -11,7 +11,10 @@
   </mat-list>
   <mat-list class="header-actions">
     <mat-list-item>
-      <mat-icon>search</mat-icon>
+      <mat-form-field appearance="standard">
+        <mat-label>search</mat-label>
+        <input matInput  placeholder="Ex. Mia" #input>
+      </mat-form-field>
     </mat-list-item>
     <mat-list-item>
       <mat-icon>more_vert</mat-icon>

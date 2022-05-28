@@ -35,7 +35,7 @@
     </mat-form-field>
     <mat-form-field appearance="fill" *ngIf="!isLogin">
       <mat-label>Роль</mat-label>
-      <mat-select formControlName="RoleName">
+      <mat-select formControlName="RoleName" #selection>
         <mat-option value="student" selected>Студент</mat-option>
         <mat-option value="admin">Администратор</mat-option>
       </mat-select>

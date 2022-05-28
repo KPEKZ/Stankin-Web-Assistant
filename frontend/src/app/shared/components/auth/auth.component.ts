@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserInfo } from '../../models/user-info';
 import { BackendApiService } from '../../services/backend-api.service';
 
 @Component({
@@ -37,29 +36,25 @@ export class AuthComponent implements OnInit {
   }
 
   public register():void {
-    let id = Math.round(Math.random() * 1000000000);
     if (this.form.valid) {
-      console.log(this.form.value);
-      this._backendApi.registerUserAuthData({
-        Login: this.form.value.Login,
-        Password: this.form.value.Password
-      });
-
       this._backendApi.registerUserInfo({
+        Login: this.form.value.Login,
+        Password: this.form.value.Password,
         Group: this.form.value.Group,
         E_mail: this.form.value.E_mail,
         FirstName: this.form.value.FirstName,
         SecondName: this.form.value.SecondName,
         Patronymic: this.form.value.Patronymic,
         PhoneNumber: this.form.value.PhoneNumber,
-      });
-
-      this._backendApi.registerUserRole({
         RoleName: this.form.value.RoleName,
-        Permission: this.form.value.Permission
-      })
+        Permission: this.form.value.RoleName === 'student' ? 'read' : 'write',
+      });
       this._router.navigate(['/teachers']);
     }
+
+  }
+
+  public login(): void {
 
   }
 

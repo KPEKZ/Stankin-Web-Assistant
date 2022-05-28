@@ -9,11 +9,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { TeacherComponent } from './components/teacher/teacher.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReferenceComponent } from './components/reference/reference.component';
+import { ProblemComponent } from './components/problem/problem.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TeacherComponent
+    TeacherComponent,
+    ReferenceComponent,
+    ProblemComponent
   ],
   imports: [
     BrowserModule,
@@ -21,9 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
-      TuiRootModule,
-      TuiDialogModule,
-      TuiAlertModule
+    TuiRootModule,
+    TuiDialogModule,
+    TuiAlertModule
 ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]

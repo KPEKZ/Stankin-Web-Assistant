@@ -1,11 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MonoTypeOperatorFunction, Observable } from 'rxjs';
-import { authData } from '../models/authData';
+import { Observable } from 'rxjs';
 import { Employee } from '../models/employee';
 import { EmployeeDto } from '../models/employee-dto';
 import { UserInfo } from '../models/user-info';
-import { Role } from '../models/user-role';
 
 @Injectable({
   providedIn: 'root'
@@ -32,12 +30,7 @@ export class BackendApiService {
   public registerUserInfo(userInfo : UserInfo): void {
     this._http.post(this._localhost + 'UserInfo',userInfo).subscribe();
   }
-  public registerUserAuthData(userAuthDate: authData,): void {
-    this._http.post(this._localhost + 'UserAuthData',userAuthDate).subscribe();
-  }
 
-  public registerUserRole(roleName: Role): void {
-    this._http.post(this._localhost + 'Roles',roleName).subscribe();
-  }
+
 
 }
