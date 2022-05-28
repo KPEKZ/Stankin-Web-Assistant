@@ -13,13 +13,13 @@ namespace Backend.Controllers
             _excelRepository = excelRepository;
         }
 
-        [HttpGet("HeadMen/{GroupName}/{Id}")]
-        public async Task<IActionResult> GetHeadMen(string GroupName, int Id)
+        [HttpGet("HeadMen/{Id}/{Year}")]
+        public async Task<IActionResult> GetHeadMen(int Id, int Year)
         {
             IActionResult response;
             try
             {
-                var userInfoDto = await _excelRepository.GetHeadMenAsync(GroupName,Id);
+                var userInfoDto = await _excelRepository.GetHeadMenAsync(Id, Year);
                 response = Ok(userInfoDto);
             }
             catch (Exception ex)
@@ -37,6 +37,40 @@ namespace Backend.Controllers
             try
             {
                 var userInfoDto = await _excelRepository.GetListGroupAsync(GroupName, Id);
+                response = Ok(userInfoDto);
+            }
+            catch (Exception ex)
+            {
+                response = StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+            return response;
+        }
+
+        [HttpGet("Progress/{Id}")]
+        public async Task<IActionResult> GetProgressUser(int Id)
+        {
+            IActionResult response;
+            try
+            {
+                var userInfoDto = await _excelRepository.GetProgressAsync(Id);
+                response = Ok(userInfoDto);
+            }
+            catch (Exception ex)
+            {
+                response = StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+            return response;
+        }
+
+        [HttpGet("Curator/{Id}")]
+        public async Task<IActionResult> GetCurator(int Id)
+        {
+            IActionResult response;
+            try
+            {
+                var userInfoDto = await _excelRepository.GetCuratorsAsync(Id);
                 response = Ok(userInfoDto);
             }
             catch (Exception ex)
