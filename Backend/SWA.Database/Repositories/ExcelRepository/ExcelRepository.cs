@@ -23,5 +23,17 @@ namespace SWA.Database.Repositories.ExcelRepository
 				throw new Exception($"Error");
 			}
 		}
+
+		public async Task<string> GetListGroupAsync(string GroupName, int Id)
+		{
+			try
+			{
+				return await Task.Run(() => ExcelParser.SearchListGroupsDocumentById(GroupName, Id));
+			}
+			catch
+			{
+				throw new Exception($"Error");
+			}
+		}
 	}
 }

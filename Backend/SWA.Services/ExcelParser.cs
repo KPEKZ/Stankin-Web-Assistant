@@ -14,7 +14,7 @@ namespace SWA.Services
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             try
             {
-                string FileName = @"C:\Users\maksi\Desktop\Hackaton\Stankin-Web-Assistant\Backend\Backend\ListsGroups\" + Id + ".xlsx";
+                string FileName = Directory.GetCurrentDirectory() + @"\ListsGroups\" + Id + ".xlsx";
 
                 var fi = new FileInfo(FileName);
                 using (var package = new ExcelPackage(fi))
@@ -24,13 +24,20 @@ namespace SWA.Services
                         using (ExcelWorksheet workSheet = package.Workbook.Worksheets[i])
                         {
 
-                            var str = workSheet.Cells[workSheet.Dimension.Start.Row, 1, workSheet.Dimension.End.Row, 5].ToList();
+                            var str = workSheet.Cells[workSheet.Dimension.Start.Row, 1, workSheet.Dimension.End.Row, workSheet.Dimension.End.Column].ToList();
                             for (int j = 0; j < str.Count; j++)
                             {
                                 if(str[j].Text.Replace(" ","") == GroupName)
                                 {
-                                    return GroupName;
-								}
+                                    var str2 = workSheet.Cells[str[j].Start.Row + 1, str[j].Start.Column, workSheet.Dimension.End.Row, str[j].Start.Column + 3].ToList();
+                                        for(int k = 0; k < str2.Count; k++)
+                                        {
+                                            if(str2[k].Style.Font.Bold)
+                                            {
+                                                return str2[k].Text + " " + str2[k+1].Text + " " + str2[k+2].Text;
+											}
+										}
+                                }
                             }
                         }
                     }
@@ -42,5 +49,48 @@ namespace SWA.Services
             }
             return "Undefind";
         }
-	}
+
+        public static string SearchListGroupsDocumentById(string GroupName, int Id)
+        {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            try
+            {
+                string FileName = Directory.GetCurrentDirectory() + @"\ListsGroups\" + Id + ".xlsx";
+
+                var fi = new FileInfo(FileName);
+                using (var package = new ExcelPackage(fi))
+                {
+                    for (int i = 0; i < package.Workbook.Worksheets.Count; i++)
+                    {
+                        using (ExcelWorksheet workSheet = package.Workbook.Worksheets[i])
+                        {
+
+                            var str = workSheet.Cells[workSheet.Dimension.Start.Row, 1, workSheet.Dimension.End.Row, workSheet.Dimension.End.Column].ToList();
+                            for (int j = 0; j < str.Count; j++)
+                            {
+                                if (str[j].Text.Replace(" ", "") == GroupName)
+                                {
+                                    var str2 = workSheet.Cells[str[j].Start.Row + 1, str[j].Start.Column - 1, workSheet.Dimension.End.Row, str[j].Start.Column + 2].ToList();
+                                    int k = 0;
+                                    string result = "";
+                                    while(str2[k].Text != "")
+                                    {
+                                        result += str2[k].Text + " " + str2[k + 1].Text + " " + str2[k + 2].Text + "\n";
+                                        k += 3;
+									}
+                                
+                                    return result;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ошибка чтения excel-файла.");
+            }
+            return "Undefind";
+        }
+    }
 }
