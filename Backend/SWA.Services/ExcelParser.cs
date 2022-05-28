@@ -174,21 +174,83 @@ namespace SWA.Services
                             var str = workSheet.Cells[workSheet.Dimension.Start.Row, 1, workSheet.Dimension.End.Row, workSheet.Dimension.End.Column].ToList();
                             for (int j = 0; j < str.Count; j++)
                             {
-                                if (str[j].Text.Replace(" ", "") == GroupName)
+                                if(str[j].Text == "Чиликина Светлана Сергеевна")
                                 {
-                                    var str2 = workSheet.Cells[str[j].Start.Row - 3, str[j].Start.Column - 2, str[j].Start.Row - 1, str[j].Start.Column].ToList();
-
-                          
-
-                                    for(int g = 0; g < str2.Count; g++)
+                                    var str2 = workSheet.Cells[str[j].Start.Row, str[j].Start.Column, str[j].Start.Row + 20, str[j].Start.Column + 6].ToList();
+                                    for(int k = 0; k < str2.Count; k++)
                                     {
-                                        if(str2[g].Text == "1 курс")
+                                        if (str2[k].Text == GroupName)
                                         {
-                                           var str3 = workSheet.Cells[str2[g].Start.Row - 2, str[j].Start.Column - 3, str2[g].Start.Row -2, str[j].Start.Column - 3].ToList();
-                                            return str3[0].Text;
+                                            return str[j].Text + " "
+                                                + str[j + 19].Text + " "
+                                                + str[j + 20].Text + " "
+                                                + str[j + 20].Text + "\n";
                                         }
-									}
-                                    
+
+                                    }
+                                }
+
+                                if (str[j].Text == "Артемьева Мария Сергеевна")
+                                {
+                                    var str2 = workSheet.Cells[str[j].Start.Row, str[j].Start.Column, str[j].Start.Row + 20, str[j].Start.Column + 6].ToList();
+                                    for (int k = 0; k < str2.Count; k++)
+                                    {
+                                        if (str2[k].Text == GroupName)
+                                        {
+                                            return str[j].Text + " "
+                                                + str[j + 19].Text + " "
+                                                + str[j + 20].Text + " "
+                                                + str[j + 20].Text + "\n";
+                                        }
+
+                                    }
+                                }
+
+                                if (str[j].Text == "Носовицкий Вадим Борисович")
+                                {
+                                    var str2 = workSheet.Cells[str[j].Start.Row, str[j].Start.Column, str[j].Start.Row + 20, str[j].Start.Column + 6].ToList();
+                                    for (int k = 0; k < str2.Count; k++)
+                                    {
+                                        if (str2[k].Text == GroupName)
+                                        {
+                                            return str[j].Text + " "
+                                                + str[j + 19].Text + " "
+                                                + str[j + 20].Text + " "
+                                                + str[j + 20].Text + "\n";
+                                        }
+
+                                    }
+                                }
+
+                                if (str[j].Text == "Горбачева Лариса Петровна")
+                                {
+                                    var str2 = workSheet.Cells[str[j].Start.Row, str[j].Start.Column, str[j].Start.Row + 20, str[j].Start.Column + 6].ToList();
+                                    for (int k = 0; k < str2.Count; k++)
+                                    {
+                                        if (str2[k].Text == GroupName)
+                                        {
+                                            return str[j].Text + " "
+                                                + str[j + 32].Text + " "
+                                                + str[j + 33].Text + " "
+                                                + str[j + 34].Text + "\n";
+                                        }
+
+                                    }
+                                }
+
+                                if (str[j].Text == "Шибаева Анна Николаевна ")
+                                {
+                                    var str2 = workSheet.Cells[str[j].Start.Row, str[j].Start.Column, str[j].Start.Row + 20, str[j].Start.Column + 6].ToList();
+                                    for (int k = 0; k < str2.Count; k++)
+                                    {
+                                        if (str2[k].Text == GroupName)
+                                        {
+                                            return str[j].Text + " " 
+                                                + str[j + 19].Text + " "  
+                                                + str[j + 20].Text + " "
+                                                + str[j + 21].Text + "\n";
+                                        }
+                                    }
                                 }
                             }
                         }
