@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HeadmenComponent } from './components/headmen/headmen.component';
 import { ProblemComponent } from './components/problem/problem.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { ReferenceComponent } from './components/reference/reference.component';
 import { TeacherComponent } from './components/teacher/teacher.component';
 import { AuthComponent } from './shared/components/auth/auth.component';
@@ -25,6 +27,16 @@ const routes: Routes = [
     path: 'problems',
     component: ProblemComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'headmen',
+    component: HeadmenComponent,
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    // canActivate: [AuthGuard]
   },
   {
     path: '**',

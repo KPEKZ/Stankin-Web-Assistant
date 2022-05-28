@@ -11,13 +11,17 @@ import { TeacherComponent } from './components/teacher/teacher.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReferenceComponent } from './components/reference/reference.component';
 import { ProblemComponent } from './components/problem/problem.component';
+import { HeadmenComponent } from './components/headmen/headmen.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TeacherComponent,
     ReferenceComponent,
-    ProblemComponent
+    ProblemComponent,
+    HeadmenComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

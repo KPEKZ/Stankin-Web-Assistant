@@ -31,6 +31,7 @@ export class AuthComponent implements OnInit {
       "Patronymic": new FormControl(null),
       "PhoneNumber": new FormControl(null, Validators.required),
       "RoleName": new FormControl(null, Validators.required),
+      "Permission": new FormControl(null, Validators.required)
     });
    }
 
@@ -52,7 +53,7 @@ export class AuthComponent implements OnInit {
         Patronymic: this.form.value.Patronymic,
         PhoneNumber: this.form.value.PhoneNumber,
         RoleName: this.form.value.RoleName,
-        Permission: this.form.value.RoleName === 'student' ? 'read' : 'write',
+        Permission: this.form.value.Permission,
       });
       this._router.navigate(['/teachers']);
     }

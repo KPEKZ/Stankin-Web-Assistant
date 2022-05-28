@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { TuiDestroyService } from "@taiga-ui/cdk/services";
-import { takeUntil } from "rxjs";
+import { Subject, takeUntil } from "rxjs";
 import { BackendApiService } from "../../services/backend-api.service";
 
 @Injectable({
@@ -9,6 +9,7 @@ import { BackendApiService } from "../../services/backend-api.service";
 })
 export class AuthService {
   private _isLogged = false;
+  public userId: Subject<number> = new Subject<number>();
 
   public get isLogged() {
     return this._isLogged;
@@ -33,6 +34,9 @@ export class AuthService {
         alert('Неправильный логин или пароль, попробуйте снова!');
       } else {
         this.isLogged = true;
+        if (user.userID){
+          this.userId.next(user.userID);
+        }
         this._router.navigate(['/teachers']);
       }
     });

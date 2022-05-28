@@ -5,9 +5,6 @@
     <mat-list-item>
       <a class="navigation-link" mat-button routerLink="/auth" routerLinkActive="active">Authentication</a>
     </mat-list-item>
-    <mat-list-item>
-      <button class="button" mat-button>Logout</button>
-    </mat-list-item>
   </mat-list>
   <mat-list class="header-actions">
     <mat-list-item>
@@ -20,7 +17,13 @@
       <mat-icon>more_vert</mat-icon>
     </mat-list-item>
     <mat-list-item>
-      <mat-icon>account_circle</mat-icon>
+      <button mat-mini-fab [matMenuTriggerFor]="menu" color="accent">
+        <mat-icon >account_circle</mat-icon>
+      </button>
     </mat-list-item>
+    <mat-menu #menu="matMenu">
+      <a mat-menu-item routerLink="/profile">account</a>
+      <button mat-menu-item>Logout</button>
+    </mat-menu>
   </mat-list>
 </mat-toolbar>
