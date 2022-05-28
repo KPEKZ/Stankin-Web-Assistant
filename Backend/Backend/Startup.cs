@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SWA.Database.Repositories.UserInfoRepository;
 using SWA.Database.Repositories.ExcelRepository;
+using SWA.Database.Repositories.ProblemRepository;
 
 namespace Backend
 {
@@ -22,8 +23,11 @@ namespace Backend
 				options.UseNpgsql(Configuration.GetConnectionString("SWA"))
 			);
 
-			services.AddTransient<IUserInfoRepository, UserInfoRepository>();
+			services.AddTransient<IProblemRepository, ProblemRepository>();
 			services.AddTransient<IExcelRepository, ExcelRepository>();
+			services.AddTransient<IReferenceRepository, ReferenceRepository>();
+			services.AddTransient<IExcelRepository, ExcelRepository>();
+			services.AddTransient<IUserInfoRepository, UserInfoRepository>();
 
 			services.AddControllers();
 			services.AddHealthChecks();
