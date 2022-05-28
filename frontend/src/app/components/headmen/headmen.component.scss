@@ -1,0 +1,16 @@
+:host {
+  section {
+
+  h1, h2 {
+    margin: auto;
+  }
+
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    justify-content: center;
+    margin: auto;
+    gap:30px;
+  }
+
+}

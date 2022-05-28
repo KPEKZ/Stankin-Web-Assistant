@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AcademicPerfomanceComponent } from './components/academic-perfomance/academic-perfomance.component';
 import { HeadmenComponent } from './components/headmen/headmen.component';
 import { ProblemComponent } from './components/problem/problem.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -36,6 +37,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: 'perfomance',
+    component: AcademicPerfomanceComponent,
     // canActivate: [AuthGuard]
   },
   {

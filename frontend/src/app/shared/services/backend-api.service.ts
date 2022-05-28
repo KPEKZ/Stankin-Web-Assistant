@@ -39,16 +39,12 @@ export class BackendApiService {
     return this._http.get<UserInfoGet>(this._localhost + `UserInfo/${login}/${password}`)
   }
 
-  public getHeadMen(groupName: string): Observable<string> {
+  public getHeadMen(groupName: string,id:number) {
     console.log(groupName, groupName.toUpperCase());
     const year: number = parseInt('20' + groupName.toUpperCase().split('-')[1],10);
     const curYear: number = new Date().getFullYear();
     const lvl = curYear - year;
-    console.log(year, curYear,lvl);
-    const codec = new HttpUrlEncodingCodec();
-    const url =  codec.decodeKey(codec.encodeKey(this._localhost + `Excel/HeadMen/${groupName.toUpperCase()}/${lvl}`));
-    console.log(url.toString());
-    return this._http.get<string>(JSON.stringify(url).toString());
+    return this._http.get(this._localhost + `Excel/HeadMen/${id}/${lvl}`, {responseType: 'text'});
   }
 
 

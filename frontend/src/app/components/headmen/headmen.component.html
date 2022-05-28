@@ -1,8 +1,13 @@
-<mat-form-field appearance="fill">
-  <mat-label>Введите группу</mat-label>
-  <input type="text" matInput name="headmen" (input)="onChange($event)">
-</mat-form-field>
+<section>
+  <h1>Староста</h1>
 
-<ng-container *ngIf="headMen.length > 0">
-  <h2>{{headMen}}</h2>
-</ng-container>
+  <mat-form-field appearance="fill">
+    <mat-label>Введите группу</mat-label>
+    <input type="text" matInput name="headmen" (input)="onChange($event)">
+  </mat-form-field>
+
+  <ng-container *ngIf="headMen.length > 0 && headMen ">
+    <h2>{{headMen}}</h2>
+  </ng-container>
+
+</section>
