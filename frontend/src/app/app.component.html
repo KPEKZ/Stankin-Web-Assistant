@@ -9,20 +9,17 @@
           </mat-list-item>
         </a>
       <mat-divider></mat-divider>
-      <button type="button" mat-flat-button [matMenuTriggerFor]="docs">
+      <a mat-flat-button routerLink="references" routerLinkActive="active">
         <mat-list-item>
           Справки
         </mat-list-item>
-      </button>
+      </a>
+      <a mat-flat-button routerLink="problems" routerLinkActive="active">
+        <mat-list-item>
+          прочие проблемы
+        </mat-list-item>
+      </a>
     </mat-nav-list>
-    <mat-menu #docs="matMenu">
-      <button mat-menu-item >Справка с места обучения</button>
-      <button mat-menu-item>Справка о периоде
-        обучения</button>
-      <button mat-menu-item >Reptiles</button>
-      <button mat-menu-item>Birds</button>
-      <button mat-menu-item>Mammals</button>
-    </mat-menu>
   </mat-drawer>
   <mat-drawer-content class="sidenav-content">
     <router-outlet></router-outlet>

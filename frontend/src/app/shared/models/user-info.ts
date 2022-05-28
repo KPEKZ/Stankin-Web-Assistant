@@ -1,8 +1,12 @@
 export interface UserInfo {
-  E_mail : string,
-  FirstName: string,
-  SecondName: string,
-  Patronymic :string,
-  PhoneNumber: string,
-  Group : string,
+  Login: string;
+  Password: string;
+  E_mail : string;
+  FirstName: string;
+  SecondName: string;
+  Patronymic :string;
+  PhoneNumber: string;
+  Group : string;
+  RoleName: string;
+  Permission: string;
 }
