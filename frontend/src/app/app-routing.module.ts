@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TeacherComponent } from './components/teacher/teacher.component';
-import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { AuthComponent } from './shared/components/auth/auth.component';
 
 const routes: Routes = [
+  {
+    path: 'auth',
+    component: AuthComponent
+  },
   {
     path: 'teachers',
     component: TeacherComponent
   },
   {
     path: '**',
-    component: NotFoundComponent
+    redirectTo: 'auth'
   }
 ];
 

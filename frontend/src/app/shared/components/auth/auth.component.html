@@ -1,1 +1,47 @@
-<p>auth works!</p>
+<form class="auth-form" [formGroup]="form" (ngSubmit) = "onSubmit()" #authForm>
+    <mat-form-field appearance="fill">
+      <mat-label>Логин</mat-label>
+      <input matInput name="login" formControlName="Login">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Пароль</mat-label>
+      <input type="password" matInput name="password" formControlName="Password">
+    </mat-form-field>
+    <mat-form-field appearance="fill" *ngIf="!isLogin">
+      <mat-label>Фамилия</mat-label>
+      <input type="text" matInput name="userName" formControlName="FirstName">
+    </mat-form-field>
+    <mat-form-field appearance="fill" *ngIf="!isLogin">
+      <mat-label>Имя</mat-label>
+      <input type="text" matInput name="userSecondName" formControlName="SecondName">
+    </mat-form-field>
+    <mat-form-field appearance="fill" *ngIf="!isLogin">
+      <mat-label>Отчество</mat-label>
+      <input type="text" matInput name="userPatronimyc" formControlName="Patronymic">
+    </mat-form-field>
+    <mat-form-field appearance="fill" *ngIf="!isLogin">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput name="email" formControlName="E_mail">
+    </mat-form-field>
+    <mat-form-field appearance="fill" *ngIf="!isLogin">
+      <mat-label>Группа</mat-label>
+      <input type="text" matInput name="group" formControlName="Group">
+    </mat-form-field>
+    <mat-form-field appearance="fill" *ngIf="!isLogin">
+      <mat-label>Телефон</mat-label>
+      <span matPrefix>+7 &nbsp;</span>
+      <input type="tel" matInput name="phone" formControlName="PhoneNumber">
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="fill" *ngIf="!isLogin">
+      <mat-label>Роль</mat-label>
+      <mat-select formControlName="RoleName">
+        <mat-option value="student" selected>Студент</mat-option>
+        <mat-option value="admin">Администратор</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="auth-form__actions">
+      <button type="submit" mat-raised-button>{{isLogin ? 'Войти' : 'Зарегистрироваться'}}</button>
+      <button type="button" mat-raised-button (click)="onSwitch()">Переключиться на {{!isLogin ? 'вход' : 'регистрацию'}}</button>
+    </div>
+</form>

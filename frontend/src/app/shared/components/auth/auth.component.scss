@@ -1,0 +1,21 @@
+:host {
+  .auth-form {
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    background: darkgrey;
+    justify-content: center;
+    -webkit-box-shadow: 11px 13px 8px 0px rgba(2, 3, 4, 0.2);
+    -moz-box-shadow: 11px 13px 8px 0px rgba(2, 3, 4, 0.2);
+    box-shadow: 11px 13px 8px 0px rgba(2, 3, 4, 0.2);
+    border-radius: 7px;
+
+    .auth-form__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}
