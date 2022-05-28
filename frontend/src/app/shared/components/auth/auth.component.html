@@ -28,6 +28,13 @@
       <input type="text" matInput name="group" formControlName="Group">
     </mat-form-field>
     <mat-form-field appearance="fill" *ngIf="!isLogin">
+      <mat-label>Права</mat-label>
+      <mat-select formControlName="Permission" #selection>
+        <mat-option value="read" selected>Пользователь</mat-option>
+        <mat-option value="write">Запись и чтение</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" *ngIf="!isLogin">
       <mat-label>Телефон</mat-label>
       <span matPrefix>+7 &nbsp;</span>
       <input type="tel" matInput name="phone" formControlName="PhoneNumber">
