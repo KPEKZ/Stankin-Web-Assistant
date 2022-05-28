@@ -5,7 +5,7 @@ namespace SWA.Database.Repositories.UserInfoRepository
 {
     public interface IUserInfoRepository
     {
-        Task<UserInfo> GetUserInfoAsync(int UserInfoId);
+        Task<UserInfo> GetUserInfoAsync(string Login, string Password);
         Task<int> CreateUserInfoAsync(UserInfoDto UserInfo);
         Task UpdateUserInfoAsync(int UserInfoId, UserInfoDto UserInfo);
         Task DeleteUserInfoAsync(int UserInfoId);
