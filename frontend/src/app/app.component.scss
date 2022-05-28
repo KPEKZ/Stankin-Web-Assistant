@@ -8,6 +8,12 @@
 
   .sidenav {
     padding: 20px;
+
+    .sidenav__list {
+      .active {
+        background-color:#978d8d;
+      }
+    }
   }
 
   .sidenav-content {

@@ -2,15 +2,19 @@
 <app-header (toggleEvent)="drawer.toggle()"></app-header>
 <mat-drawer-container class="sidenav-container" autosize>
   <mat-drawer #drawer class="sidenav" mode="over" >
-    <mat-list class="sidenav__list">
-      <mat-list-item>
-        <a mat-flat-button  routerLink="teachers" routerLinkActive="active">Преподаватели</a>
-      </mat-list-item>
+    <mat-nav-list class="sidenav__list">
+        <a mat-flat-button  routerLink="teachers" routerLinkActive="active">
+          <mat-list-item>
+            Преподаватели
+          </mat-list-item>
+        </a>
       <mat-divider></mat-divider>
-      <mat-list-item>
-        <a mat-flat-button>Старосты</a>
-      </mat-list-item>
-    </mat-list>
+      <a mat-flat-button>
+        <mat-list-item>
+          Старосты
+        </mat-list-item>
+      </a>
+    </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content class="sidenav-content">
     <router-outlet></router-outlet>

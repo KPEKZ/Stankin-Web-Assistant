@@ -17,6 +17,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -38,7 +41,10 @@ import { MatDividerModule } from '@angular/material/divider';
     MatFormFieldModule,
     MatInputModule,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule,
+    ReactiveFormsModule,
+    RouterModule,
+    MatSelectModule
   ],
   providers: [
     BackendApiService,
@@ -60,7 +66,10 @@ import { MatDividerModule } from '@angular/material/divider';
     MatInputModule,
     MatTableModule,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule,
+    ReactiveFormsModule,
+    RouterModule,
+    MatSelectModule
   ]
 })
 export class SharedModule { }
