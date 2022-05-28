@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace SWA.Database.Repositories.UserInfoRepository
 {
     public class UserInfoRepository : BaseRepository, IUserInfoRepository
-    {
+	{
         public UserInfoRepository(SWADbContext context) : base(context) { }
 		public async Task UpdateUserInfoAsync(int UserInfoId, UserInfoDto UserInfo)
 		{

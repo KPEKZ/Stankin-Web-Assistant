@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Backend.Models;
+using SWA.Database.Models;
 
 namespace SWA.Database
 {
@@ -8,6 +9,8 @@ namespace SWA.Database
 		public SWADbContext(DbContextOptions<SWADbContext> options) : base(options) { }
 
 		public DbSet<UserInfo>? UserInfo { get; set; }
+		public DbSet<Problem>? Problem { get; set; }
+		public DbSet<Reference>? Reference { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
