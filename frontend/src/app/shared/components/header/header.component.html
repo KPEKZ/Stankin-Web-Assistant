@@ -16,6 +16,12 @@
     <mat-list-item>
       <mat-icon>more_vert</mat-icon>
     </mat-list-item>
+    <mat-list-item *ngIf="user.secondName !== '' ">
+      {{user.secondName}}
+    </mat-list-item>
+    <mat-list-item *ngIf="user.firstName !== '' ">
+      {{user.firstName}}
+    </mat-list-item>
     <mat-list-item>
       <button mat-mini-fab [matMenuTriggerFor]="menu" color="accent">
         <mat-icon >account_circle</mat-icon>

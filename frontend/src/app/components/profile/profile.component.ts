@@ -13,8 +13,19 @@ import { BackendApiService } from 'src/app/shared/services/backend-api.service';
 })
 export class ProfileComponent implements OnInit {
   public form : FormGroup;
-  public userId ?: number;
-  public user ?: UserInfoGet;
+  public userId : number = this._auth._userId;
+  public user : UserInfoGet = {
+    login: '',
+    password: '',
+    e_mail: '',
+    firstName: '',
+    secondName: '',
+    patronymic: '',
+    phoneNumber: '',
+    group: '',
+    roleName: '',
+    permission: ''
+  };
 
 
   constructor(
@@ -38,25 +49,44 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this._auth.userId.subscribe(id => {
       this.userId = id;
-      this._backendApi.getUserInfoById(this.userId)
-        .subscribe(user => {
-          this.user = user;
-          console.log(user);
-          this.form.patchValue({
-            login: user.login,
-            password: user.password,
-            group: user.group,
-            e_mail: user.e_mail,
-            firstName: user.firstName,
-            secondName: user.secondName,
-            patronymic: user.patronymic,
-            phoneNumber: user.phoneNumber,
-            roleName: user.roleName,
-            permission: user.permission
-          });
-        });
     });
 
+    this._backendApi.getUserInfoById(this.userId)
+    .subscribe(user => {
+      this.user = user;
+      console.log(user);
+      this.form.patchValue({
+        login: user.login,
+        password: user.password,
+        group: user.group,
+        e_mail: user.e_mail,
+        firstName: user.firstName,
+        secondName: user.secondName,
+        patronymic: user.patronymic,
+        phoneNumber: user.phoneNumber,
+        roleName: user.roleName,
+        permission: user.permission
+      });
+    });
+
+  }
+
+  onSubmit() {
+    if (!this.form.invalid) [
+      this._backendApi.changeUserInfo({
+        UserID:this.userId,
+        Login:this.form.value.login,
+        Password: this.form.value.password,
+        Group: this.form.value.group,
+        E_mail: this.form.value.e_mail,
+        FirstName: this.form.value.firstName,
+        SecondName: this.form.value.secondName,
+        Patronymic: this.form.value.patronymic,
+        PhoneNumber: this.form.value.phoneNumber,
+        RoleName: this.form.value.roleName,
+        Permission: this.form.value.permission
+      })
+    ]
   }
 
 }

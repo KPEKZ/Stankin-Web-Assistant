@@ -1,8 +1,11 @@
 <section>
   <h1>Успеваемость</h1>
 
-  <!-- <ng-container *ngIf="headMen.length > 0 && headMen ">
-    <h2>{{headMen}}</h2>
-  </ng-container> -->
+  <ng-container *ngIf="text.length > 0 && text !== 'Undefind' ">
+    <h2>{{text}}</h2>
+  </ng-container>
+  <ng-container *ngIf="!text || text === 'Undefind'">
+    <h2>Пока успеваемость не наайдйена</h2>
+  </ng-container>
 
 </section>

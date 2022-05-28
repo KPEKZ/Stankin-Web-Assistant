@@ -35,6 +35,10 @@ export class BackendApiService {
     this._http.post(this._localhost + 'UserInfo',userInfo).subscribe();
   }
 
+  public changeUserInfo(userInfo: UserInfo): void {
+    this._http.put(this._localhost + 'UserInfo/' + userInfo.UserID,userInfo).subscribe();
+  }
+
   public loginUserInfo(login: string, password: string): Observable<UserInfoGet> {
     return this._http.get<UserInfoGet>(this._localhost + `UserInfo/${login}/${password}`)
   }
@@ -50,6 +54,10 @@ export class BackendApiService {
 
   public getUserInfoById(userId: number): Observable<UserInfoGet> {
     return this._http.get<UserInfoGet>(this._localhost + 'UserInfo/' + userId );
+  }
+
+  public getUserPerfomance(id: number) {
+    return this._http.get(this._localhost + `Excel/Progress/${id}/`, {responseType: 'text'});
   }
 
 }

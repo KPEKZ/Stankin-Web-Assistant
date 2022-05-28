@@ -3,4 +3,11 @@
   table {
     width: 100%;
   }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+  }
+
 }

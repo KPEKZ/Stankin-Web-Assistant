@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { AuthService } from 'src/app/shared/components/auth/auth.service';
+import { BackendApiService } from 'src/app/shared/services/backend-api.service';
 
 @Component({
   selector: 'app-reference',
@@ -7,6 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./reference.component.scss']
 })
 export class ReferenceComponent implements OnInit {
+  public isAdmin = this._auth._isAdmin;
 
   public displayedColumns: string[] = ['type', 'department', 'room', 'phone'];
   public dataSource  = [
@@ -16,11 +19,35 @@ export class ReferenceComponent implements OnInit {
     {type: 'Справка о размере и наличии стипендии',department: 'Бухгалтерия', room: 'фауд. 0732', phone: '+7(499)-972-94-55'},
   ];
 
-  constructor() {
+  @ViewChild(MatTable)
+  table!: MatTable<{
+    type: string;
+    department: string;
+    room: string;
+    phone: string;
+  }>;
+
+  constructor(
+    private readonly _auth: AuthService,
+    private readonly _backendApi: BackendApiService
+  ) {
+    this._auth.userAdmin.subscribe(isAdmin => {
+      this.isAdmin = isAdmin;
+    });
 
    }
 
   ngOnInit(): void {
+  }
+
+  addData(type: HTMLInputElement, dep: HTMLInputElement, room: HTMLInputElement, phone: HTMLInputElement) {
+    this.dataSource.push({type: type.value, department: dep.value, room: room.value, phone: phone.value});
+    this.table.renderRows();
+  }
+
+  removeData() {
+    this.dataSource.pop();
+    this.table.renderRows();
   }
 
 }

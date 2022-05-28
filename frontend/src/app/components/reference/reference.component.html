@@ -1,4 +1,34 @@
 <div *ngIf="dataSource">
+
+  <div class="actions" *ngIf="isAdmin">
+    <button mat-raised-button (click)="addData(type,dep,room,phone)" class="demo-button">
+      Добавить
+    </button>
+    <button
+        mat-raised-button
+        [disabled]="!dataSource.length"
+        (click)="removeData()"
+        class="demo-button">
+      Удалить
+    </button>
+    <mat-form-field>
+      <mat-label>Тип справки</mat-label>
+      <input type="text" matInput #type>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Отдел</mat-label>
+      <input type="text" matInput #dep>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Кабинет</mat-label>
+      <input type="text" matInput #room>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Телефон</mat-label>
+      <input type="text" matInput #phone>
+    </mat-form-field>
+  </div>
+
   <table mat-table [dataSource]="dataSource">
 
     <ng-container matColumnDef="type">

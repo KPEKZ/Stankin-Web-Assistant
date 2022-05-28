@@ -9,7 +9,11 @@ import { BackendApiService } from "../../services/backend-api.service";
 })
 export class AuthService {
   private _isLogged = false;
+  public _isAdmin = false;
+  public _userId = 1;
   public userId: Subject<number> = new Subject<number>();
+  public userAdmin: Subject<boolean> = new Subject<boolean>();
+
 
   public get isLogged() {
     return this._isLogged;
@@ -36,6 +40,14 @@ export class AuthService {
         this.isLogged = true;
         if (user.userID){
           this.userId.next(user.userID);
+          this._userId = user.userID;
+          if (user.roleName === 'admin') {
+            this.userAdmin.next(true);
+            this._isAdmin = true;
+          } else {
+            this.userAdmin.next(false);
+            this._isAdmin = false;
+          }
         }
         this._router.navigate(['/teachers']);
       }

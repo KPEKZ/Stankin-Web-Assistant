@@ -32,17 +32,17 @@ const routes: Routes = [
   {
     path: 'headmen',
     component: HeadmenComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile',
     component: ProfileComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'perfomance',
     component: AcademicPerfomanceComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
