@@ -47,13 +47,30 @@ namespace Backend.Controllers
             return response;
         }
 
-        [HttpGet("Progress/{GroupName}/{SecondName}/{Id}")]
-        public async Task<IActionResult> GetProgressUser(string GroupName, string SecondName, int Id)
+        [HttpGet("Progress/{Id}")]
+        public async Task<IActionResult> GetProgressUser(int Id)
         {
             IActionResult response;
             try
             {
-                var userInfoDto = await _excelRepository.GetProgressAsync(GroupName,SecondName, Id);
+                var userInfoDto = await _excelRepository.GetProgressAsync(Id);
+                response = Ok(userInfoDto);
+            }
+            catch (Exception ex)
+            {
+                response = StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+            return response;
+        }
+
+        [HttpGet("Curator/{Id}")]
+        public async Task<IActionResult> GetCurator(int Id)
+        {
+            IActionResult response;
+            try
+            {
+                var userInfoDto = await _excelRepository.GetCuratorsAsync(Id);
                 response = Ok(userInfoDto);
             }
             catch (Exception ex)

@@ -11,6 +11,7 @@ namespace SWA.Database.Repositories.ExcelRepository
 	{
 		Task<string> GetHeadMenAsync(int Id, int Year);
 		Task<string> GetListGroupAsync(string GroupName, int Id);
-		Task<string> GetProgressAsync(string GroupName, string SecondName, int Id);
+		Task<string> GetProgressAsync(int Id);
+		Task<string> GetCuratorsAsync(int Id);
 	}
 }

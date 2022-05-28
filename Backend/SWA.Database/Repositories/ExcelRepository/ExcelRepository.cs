@@ -42,11 +42,33 @@ namespace SWA.Database.Repositories.ExcelRepository
 			}
 		}
 
-		public async Task<string> GetProgressAsync(string GroupName, string SecondName, int Id)
+		public async Task<string> GetProgressAsync(int Id)
 		{
 			try
 			{
-				return await Task.Run(() => ExcelParser.ProgresBySecondName(GroupName, SecondName, Id));
+				var userInfo = await _context.UserInfo.FirstOrDefaultAsync(c => c.UserID == Id);
+
+				if (userInfo == null)
+					throw new Exception($"Error");
+
+				return await Task.Run(() => ExcelParser.ProgresBySecondName(userInfo.Group, userInfo.SecondName, Id));
+			}
+			catch
+			{
+				throw new Exception($"Error");
+			}
+		}
+
+		public async Task<string> GetCuratorsAsync(int Id)
+		{
+			try
+			{
+				var userInfo = await _context.UserInfo.FirstOrDefaultAsync(c => c.UserID == Id);
+
+				if (userInfo == null)
+					throw new Exception($"Error");
+
+				return await Task.Run(() => ExcelParser.SearchCurator(userInfo.Group));
 			}
 			catch
 			{
