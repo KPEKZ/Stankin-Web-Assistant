@@ -35,5 +35,17 @@ namespace SWA.Database.Repositories.ExcelRepository
 				throw new Exception($"Error");
 			}
 		}
+
+		public async Task<string> GetProgressAsync(string GroupName, string SecondName, int Id)
+		{
+			try
+			{
+				return await Task.Run(() => ExcelParser.ProgresBySecondName(GroupName, SecondName, Id));
+			}
+			catch
+			{
+				throw new Exception($"Error");
+			}
+		}
 	}
 }

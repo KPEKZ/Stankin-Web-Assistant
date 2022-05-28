@@ -46,5 +46,22 @@ namespace Backend.Controllers
 
             return response;
         }
+
+        [HttpGet("Progress/{GroupName}/{SecondName}/{Id}")]
+        public async Task<IActionResult> GetProgressUser(string GroupName, string SecondName, int Id)
+        {
+            IActionResult response;
+            try
+            {
+                var userInfoDto = await _excelRepository.GetProgressAsync(GroupName,SecondName, Id);
+                response = Ok(userInfoDto);
+            }
+            catch (Exception ex)
+            {
+                response = StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+            return response;
+        }
     }
 }
