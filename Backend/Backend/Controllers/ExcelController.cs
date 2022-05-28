@@ -13,13 +13,13 @@ namespace Backend.Controllers
             _excelRepository = excelRepository;
         }
 
-        [HttpGet("HeadMen/{GroupName}/{Id}")]
-        public async Task<IActionResult> GetHeadMen(string GroupName, int Id)
+        [HttpGet("HeadMen/{Id}/{Year}")]
+        public async Task<IActionResult> GetHeadMen(int Id, int Year)
         {
             IActionResult response;
             try
             {
-                var userInfoDto = await _excelRepository.GetHeadMenAsync(GroupName,Id);
+                var userInfoDto = await _excelRepository.GetHeadMenAsync(Id, Year);
                 response = Ok(userInfoDto);
             }
             catch (Exception ex)
