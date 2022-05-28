@@ -1,6 +1,7 @@
 ﻿using SWA.Database;
 using Microsoft.EntityFrameworkCore;
 using SWA.Database.Repositories.UserInfoRepository;
+using SWA.Database.Repositories.ExcelRepository;
 
 namespace Backend
 {
@@ -22,6 +23,7 @@ namespace Backend
 			);
 
 			services.AddTransient<IUserInfoRepository, UserInfoRepository>();
+			services.AddTransient<IExcelRepository, ExcelRepository>();
 
 			services.AddControllers();
 			services.AddHealthChecks();

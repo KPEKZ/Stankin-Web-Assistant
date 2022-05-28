@@ -14,13 +14,13 @@ namespace Backend.Controllers
             _userInfoRepository = userInfoRepository;
         }
 
-        [HttpGet("{UserInfoId}")]
-        public async Task<IActionResult> GetUserInfo(int UserInfoId)
+        [HttpGet("{Login}/{Password}")]
+        public async Task<IActionResult> GetUserInfo(string Login, string Password)
         {
             IActionResult response;
             try
             {
-                var userInfoDto = await _userInfoRepository.GetUserInfoAsync(UserInfoId);
+                var userInfoDto = await _userInfoRepository.GetUserInfoAsync(Login,Password);
                 response = Ok(userInfoDto);
             }
             catch (Exception ex)
