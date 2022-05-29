@@ -74,6 +74,27 @@ namespace SWA.Database.Migrations
                     b.ToTable("UserInfo");
                 });
 
+            modelBuilder.Entity("SWA.Database.Models.News", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Discription")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("News");
+                });
+
             modelBuilder.Entity("SWA.Database.Models.Problem", b =>
                 {
                     b.Property<int>("Id")
