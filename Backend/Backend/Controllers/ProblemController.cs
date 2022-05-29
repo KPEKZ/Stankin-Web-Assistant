@@ -31,6 +31,23 @@ namespace Backend.Controllers
             return response;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetProblems()
+        {
+            IActionResult response;
+            try
+            {
+                var reference = await _problemRepository.GetProblemsAsync();
+                response = Ok(reference);
+            }
+            catch (Exception ex)
+            {
+                response = StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+            return response;
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateProblem([FromBody] ProblemDto problem)
         {

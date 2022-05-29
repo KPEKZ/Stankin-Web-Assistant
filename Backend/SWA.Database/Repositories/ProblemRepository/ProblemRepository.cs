@@ -85,6 +85,24 @@ namespace SWA.Database.Repositories.ProblemRepository
 			}
 		}
 
+		public async Task<List<Problem>> GetProblemsAsync()
+		{
+			try
+			{
+				var problems = await _context.Problem.ToListAsync<Problem>();
+
+				if (problems == null)
+					throw new Exception($"No problems.");
+
+				return problems;
+			}
+
+			catch
+			{
+				throw new Exception($"Error");
+			}
+		}
+
 		public async Task DeleteProblemAsync(int ProblemId)
 		{
 			try
