@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SWA.Database.Repositories.UserInfoRepository;
 using SWA.Database.Repositories.ExcelRepository;
 using SWA.Database.Repositories.ProblemRepository;
+using SWA.Database.Repositories.NewsRepository;
 
 namespace Backend
 {
@@ -28,6 +29,7 @@ namespace Backend
 			services.AddTransient<IReferenceRepository, ReferenceRepository>();
 			services.AddTransient<IExcelRepository, ExcelRepository>();
 			services.AddTransient<IUserInfoRepository, UserInfoRepository>();
+			services.AddTransient<INewsRepository, NewsRepository>();
 
 			services.AddControllers();
 			services.AddHealthChecks();
