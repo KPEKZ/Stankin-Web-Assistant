@@ -85,6 +85,24 @@ namespace SWA.Database.Repositories.ProblemRepository
 			}
 		}
 
+		public async Task<List<Reference>> GetReferencesAsync()
+		{
+			try
+			{
+				var references = await _context.Reference.ToListAsync();
+
+				if (references == null)
+					throw new Exception($"No references.");
+
+				return references;
+			}
+
+			catch
+			{
+				throw new Exception($"Error");
+			}
+		}
+
 		public async Task DeleteReferenceAsync(int ReferenceId)
 		{
 			try
