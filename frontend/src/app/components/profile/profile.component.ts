@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { TuiDestroyService } from '@taiga-ui/cdk/services';
+import { Observable, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/shared/components/auth/auth.service';
 import { UserInfo } from 'src/app/shared/models/user-info';
 import { UserInfoGet } from 'src/app/shared/models/user-info-get';
@@ -12,6 +13,7 @@ import { BackendApiService } from 'src/app/shared/services/backend-api.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  public isLoading = true;
   public form : FormGroup;
   public userId : number = this._auth._userId;
   public user : UserInfoGet = {
@@ -30,7 +32,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private readonly _backendApi: BackendApiService,
-    private readonly _auth: AuthService
+    private readonly _auth: AuthService,
+    private readonly _destroy$: TuiDestroyService,
   ) {
     this.form = new FormGroup({
       login: new FormControl(null, Validators.required),
@@ -47,14 +50,15 @@ export class ProfileComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this._auth.userId.subscribe(id => {
+    this._auth.userId.pipe(takeUntil(this._destroy$)).subscribe(id => {
       this.userId = id;
     });
 
     this._backendApi.getUserInfoById(this.userId)
+    .pipe(takeUntil(this._destroy$))
     .subscribe(user => {
       this.user = user;
-      console.log(user);
+      this.isLoading = false;
       this.form.patchValue({
         login: user.login,
         password: user.password,

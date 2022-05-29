@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TuiDestroyService } from '@taiga-ui/cdk/services';
+import { takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/components/auth/auth.service';
 import { BackendApiService } from 'src/app/shared/services/backend-api.service';
 
@@ -13,14 +15,15 @@ export class CuratorComponent implements OnInit {
 
   constructor(
     private readonly _auth: AuthService,
-    private readonly _backendApi: BackendApiService
+    private readonly _backendApi: BackendApiService,
+    private readonly _destroy$: TuiDestroyService,
   ) { }
 
   ngOnInit(): void {
-    this._auth.userId.subscribe(id => {
+    this._auth.userId.pipe(takeUntil(this._destroy$)).subscribe(id => {
       this.id = id;
     });
-    this._backendApi.getUserCuratorById(this.id)
+    this._backendApi.getUserCuratorById(this.id).pipe(takeUntil(this._destroy$))
     .subscribe(perfomance =>
       this.text = perfomance
     );

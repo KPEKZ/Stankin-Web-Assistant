@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { switchMap, tap } from 'rxjs/operators';
+import { TuiDestroyService } from '@taiga-ui/cdk/services';
+import { switchMap, takeUntil, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/components/auth/auth.service';
 import { UserInfoGet } from 'src/app/shared/models/user-info-get';
 import { BackendApiService } from 'src/app/shared/services/backend-api.service';
@@ -10,6 +11,7 @@ import { BackendApiService } from 'src/app/shared/services/backend-api.service';
   styleUrls: ['./list-group.component.scss']
 })
 export class ListGroupComponent implements OnInit {
+  public isLoading = true;
   public id = this._auth._userId;
   public text: string = '';
   public user: UserInfoGet = {
@@ -28,21 +30,24 @@ export class ListGroupComponent implements OnInit {
 
   constructor(
     private readonly _auth: AuthService,
-    private readonly _backendApi: BackendApiService
+    private readonly _backendApi: BackendApiService,
+    private readonly _destroy$: TuiDestroyService,
   ) { }
 
   ngOnInit(): void {
-    this._auth.userId.subscribe(id => {
+    this._auth.userId.pipe(takeUntil(this._destroy$)).subscribe(id => {
       this.id = id;
     });
     this._backendApi.getUserInfoById(this.id).pipe(
       switchMap(userInfo => {
         return this._backendApi.getUserListGroup(this.id,userInfo.group);
-      })
+      }),
+      tap(() => this.isLoading = false),
+      takeUntil(this._destroy$)
     )
     .subscribe(text => {
       this.groupList = this.textTransform(text);
-      console.log(this.groupList);
+      this.isLoading = false;
     });
 
   }

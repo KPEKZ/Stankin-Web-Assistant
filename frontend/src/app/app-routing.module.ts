@@ -4,6 +4,7 @@ import { AcademicPerfomanceComponent } from './components/academic-perfomance/ac
 import { CuratorComponent } from './components/curator/curator.component';
 import { HeadmenComponent } from './components/headmen/headmen.component';
 import { ListGroupComponent } from './components/list-group/list-group.component';
+import { MapsComponent } from './components/maps/maps.component';
 import { NewsComponent } from './components/news/news/news.component';
 import { ProblemComponent } from './components/problem/problem.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -61,11 +62,17 @@ const routes: Routes = [
       {
         path: '',
         component: NewsComponent,
-       // canActivate: [AuthGuard],
+       canActivate: [AuthGuard],
       }
     ]
 
   },
+  {
+    path: 'maps',
+    component: MapsComponent,
+    canActivate: [AuthGuard],
+  },
+
 
   {
     path: 'teachers',
@@ -75,11 +82,13 @@ const routes: Routes = [
       {
         path: '',
         component: TeacherComponent,
+        canActivate: [AuthGuard],
       },
 
       {
         path: 'detail/:id',
         component: TeacherDetailComponent,
+        canActivate: [AuthGuard],
 
       }
     ]

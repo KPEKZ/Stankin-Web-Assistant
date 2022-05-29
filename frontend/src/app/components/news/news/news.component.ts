@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TuiDestroyService } from '@taiga-ui/cdk/services';
+import { takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/shared/components/auth/auth.service';
 import { InewsGet } from 'src/app/shared/models/news-get';
 import { BackendApiService } from 'src/app/shared/services/backend-api.service';
@@ -10,6 +12,7 @@ import { BackendApiService } from 'src/app/shared/services/backend-api.service';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
+  public isLoading = true;
   public isAdmin = this._auth._isAdmin;
   public news: InewsGet[] = [];
   public cachedNews: EventEmitter<InewsGet> = new EventEmitter<InewsGet>();
@@ -21,13 +24,17 @@ export class NewsComponent implements OnInit {
 
   constructor(
     private readonly _backendApi: BackendApiService,
-    private readonly _auth: AuthService
+    private readonly _auth: AuthService,
+    private readonly _destroy$: TuiDestroyService,
     ) { }
 
   ngOnInit(): void {
-    this._auth.userAdmin.subscribe(isAdmin => this.isAdmin = isAdmin);
-    this._backendApi.getNews().subscribe(news => this.news = news);
-    this.cachedNews.subscribe(news => {
+    this._auth.userAdmin.pipe(takeUntil(this._destroy$)).subscribe(isAdmin => this.isAdmin = isAdmin);
+    this._backendApi.getNews().pipe(takeUntil(this._destroy$)).subscribe(news => {
+      this.news = news;
+      this.isLoading = false;
+    });
+    this.cachedNews.pipe(takeUntil(this._destroy$)).subscribe(news => {
       this.news.push(news);
     });
   }

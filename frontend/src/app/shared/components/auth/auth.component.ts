@@ -51,7 +51,9 @@ export class AuthComponent implements OnInit {
         RoleName: this.form.value.RoleName,
         Permission: this.form.value.Permission,
       });
-      this._router.navigate(['/teachers']);
+
+      this.login();
+      this.login();
     }
 
   }

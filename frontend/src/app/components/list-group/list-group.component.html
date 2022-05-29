@@ -1,6 +1,10 @@
-<section>
+<section *ngIf="!isLoading">
   <h1>Список группы</h1>
   <div class="group-list">
     <p *ngFor="let member of groupList.values()"> {{member}}</p>
   </div>
 </section>
+
+<ng-container *ngIf="isLoading">
+  <mat-spinner [ngStyle]="{'position': 'absolute', 'translate': 'transformX(-50%)', 'top': '50px', 'right' : '50%'}"></mat-spinner>
+</ng-container>

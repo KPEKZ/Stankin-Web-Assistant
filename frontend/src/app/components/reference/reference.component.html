@@ -1,3 +1,11 @@
+<ng-container *ngIf="isLoading">
+  <mat-spinner [ngStyle]="{'position': 'absolute', 'translate': 'transformX(-50%)', 'top': '50px', 'right' : '50%'}"></mat-spinner>
+</ng-container>
+
+<ng-container *ngIf="!isLoading">
+
+
+
 <div *ngIf="dataSource">
 
   <div class="actions" *ngIf="isAdmin">
@@ -64,3 +72,11 @@
 
   </table>
   <button  *ngIf="isAdmin" class="save-button" mat-raised-button (click)="onSave()" >Сохранить</button>
+
+</div>
+
+</ng-container>
+
+<div *ngIf="dataSource.length === 0" class="empy">
+  <h1>Пусто</h1>
+</div>

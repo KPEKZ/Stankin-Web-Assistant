@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { map, Observable, takeUntil } from 'rxjs';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { takeUntil } from 'rxjs';
 import { Employee } from 'src/app/shared/models/employee';
 import { BackendApiService } from 'src/app/shared/services/backend-api.service';
 import {TuiDestroyService} from '@taiga-ui/cdk';
@@ -12,7 +12,8 @@ import { MatSort } from '@angular/material/sort';
   templateUrl: './teacher.component.html',
   styleUrls: ['./teacher.component.scss']
 })
-export class TeacherComponent implements OnInit, AfterViewInit {
+export class TeacherComponent implements OnInit {
+  public isLoading = true;
   public displayedColumns: string[] = ['ФИО', 'Почта', 'Телефон', 'Аватар'];
   public shortDataEmployee: string[] = ['fullName', 'email', 'phone', 'authorUrlProfile'];
   public dataSource: MatTableDataSource<Employee>;
@@ -31,15 +32,11 @@ export class TeacherComponent implements OnInit, AfterViewInit {
     this._backendApi.getEmployee()
     .pipe(takeUntil(this._destroy$))
     .subscribe(employees => {
-      console.log(employees);
       this.dataSource.data = employees;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.isLoading = false;
     });
-  }
-
-  ngAfterViewInit(): void {
-
   }
 
   applyFilter(event: Event) {

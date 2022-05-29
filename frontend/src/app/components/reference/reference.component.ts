@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { TuiDestroyService } from '@taiga-ui/cdk/services';
+import { takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/components/auth/auth.service';
 import { IreferenceGet } from 'src/app/shared/models/reference-get';
 import { BackendApiService } from 'src/app/shared/services/backend-api.service';
@@ -11,7 +13,7 @@ import { BackendApiService } from 'src/app/shared/services/backend-api.service';
 })
 export class ReferenceComponent implements OnInit {
   public isAdmin = this._auth._isAdmin;
-
+  public isLoading = true;
   public displayedColumns: string[] = ['type', 'department', 'audience', 'phoneNumber'];
   public dataSource : IreferenceGet[]  = [
 
@@ -27,15 +29,17 @@ export class ReferenceComponent implements OnInit {
 
   constructor(
     private readonly _auth: AuthService,
-    private readonly _backendApi: BackendApiService
+    private readonly _backendApi: BackendApiService,
+    private readonly _destroy$: TuiDestroyService,
   ) {
-    this._auth.userAdmin.subscribe(isAdmin => {
+    this._auth.userAdmin.pipe(takeUntil(this._destroy$)).subscribe(isAdmin => {
       this.isAdmin = isAdmin;
     });
-    this._backendApi.getReferences()
+    this._backendApi.getReferences().pipe(takeUntil(this._destroy$))
     .subscribe(references => {
       if (references) {
         this.dataSource.push(...references);
+        this.isLoading = false;
       }
     });
 

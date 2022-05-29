@@ -19,6 +19,7 @@ import { ListGroupComponent } from './components/list-group/list-group.component
 import { TeacherDetailComponent } from './components/teacher/teacher-detail/teacher-detail.component';
 import { NewsItemComponent } from './components/news/news-item/news-item.component';
 import { NewsComponent } from './components/news/news/news.component';
+import { MapsComponent } from './components/maps/maps.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { NewsComponent } from './components/news/news/news.component';
     TeacherDetailComponent,
     NewsItemComponent,
     NewsComponent,
+    MapsComponent,
   ],
   imports: [
     BrowserModule,

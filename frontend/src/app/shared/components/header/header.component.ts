@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { TuiDestroyService } from '@taiga-ui/cdk/services';
+import { takeUntil } from 'rxjs/operators';
 import { UserInfoGet } from '../../models/user-info-get';
 import { BackendApiService } from '../../services/backend-api.service';
 import { AuthService } from '../auth/auth.service';
@@ -31,11 +33,12 @@ export class HeaderComponent implements OnInit {
   constructor(
     private readonly _backendApi: BackendApiService,
     private readonly _auth: AuthService,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly _destroy$: TuiDestroyService,
     ) {
-      this._auth.userId.subscribe(id => {
+      this._auth.userId.pipe(takeUntil(this._destroy$)).subscribe(id => {
         this.userId = id;
-        this._backendApi.getUserInfoById(id)
+        this._backendApi.getUserInfoById(id).pipe(takeUntil(this._destroy$))
           .subscribe(user => this.user = user);
       });
     }
