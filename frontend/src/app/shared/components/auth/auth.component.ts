@@ -37,10 +37,6 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public onSubmit() {
-    this.register();
-  }
-
   public register():void {
     if (this.form.valid) {
       this._backendApi.registerUserInfo({

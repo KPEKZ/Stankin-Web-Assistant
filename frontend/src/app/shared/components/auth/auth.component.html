@@ -1,4 +1,4 @@
-<form class="auth-form" [formGroup]="form" (ngSubmit) = "onSubmit()" #authForm>
+<form class="auth-form" [formGroup]="form" #authForm>
     <mat-form-field appearance="fill">
       <mat-label>Логин</mat-label>
       <input matInput name="login" formControlName="Login">
@@ -8,11 +8,11 @@
       <input type="password" matInput name="password" formControlName="Password">
     </mat-form-field>
     <mat-form-field appearance="fill" *ngIf="!isLogin">
-      <mat-label>Фамилия</mat-label>
+      <mat-label>Имя</mat-label>
       <input type="text" matInput name="userName" formControlName="FirstName">
     </mat-form-field>
     <mat-form-field appearance="fill" *ngIf="!isLogin">
-      <mat-label>Имя</mat-label>
+      <mat-label>Фамилия</mat-label>
       <input type="text" matInput name="userSecondName" formControlName="SecondName">
     </mat-form-field>
     <mat-form-field appearance="fill" *ngIf="!isLogin">

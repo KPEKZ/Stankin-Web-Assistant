@@ -17,6 +17,8 @@ import { AcademicPerfomanceComponent } from './components/academic-perfomance/ac
 import { CuratorComponent } from './components/curator/curator.component';
 import { ListGroupComponent } from './components/list-group/list-group.component';
 import { TeacherDetailComponent } from './components/teacher/teacher-detail/teacher-detail.component';
+import { NewsItemComponent } from './components/news/news-item/news-item.component';
+import { NewsComponent } from './components/news/news/news.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { TeacherDetailComponent } from './components/teacher/teacher-detail/teac
     AcademicPerfomanceComponent,
     CuratorComponent,
     ListGroupComponent,
-    TeacherDetailComponent
+    TeacherDetailComponent,
+    NewsItemComponent,
+    NewsComponent,
   ],
   imports: [
     BrowserModule,

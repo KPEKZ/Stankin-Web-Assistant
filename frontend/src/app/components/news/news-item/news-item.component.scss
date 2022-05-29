@@ -1,0 +1,15 @@
+:host {
+  .example-card {
+    max-width: 400px;
+    background-color: #FFF;
+    color: #303030;
+    mat-card-subtitle {
+      color: #636161;
+    }
+  }
+
+  .example-header-image {
+    background-image: url('./../../../../assets/Logo.png');
+    background-size: cover;
+  }
+}

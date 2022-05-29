@@ -63,6 +63,4 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   </table>
-  <button class="save-button" mat-raised-button (click)="onSave()" >Сохранить</button>
-
-</div>
+  <button  *ngIf="isAdmin" class="save-button" mat-raised-button (click)="onSave()" >Сохранить</button>

@@ -21,13 +21,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
   declarations: [
     NotFoundComponent,
     AuthComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -46,7 +48,10 @@ import { MatCardModule } from '@angular/material/card';
     ReactiveFormsModule,
     RouterModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule,
+    MatProgressSpinnerModule
+
   ],
   providers: [
     BackendApiService,
@@ -72,7 +77,9 @@ import { MatCardModule } from '@angular/material/card';
     ReactiveFormsModule,
     RouterModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule,
+    MatProgressSpinnerModule
   ]
 })
 export class SharedModule { }

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from '../models/employee';
 import { EmployeeDto } from '../models/employee-dto';
+import { Inews } from '../models/news';
+import { InewsGet } from '../models/news-get';
 import { problem } from '../models/problem';
 import { problemGet } from '../models/problem-get';
 import { Ireference } from '../models/reference';
@@ -88,6 +90,14 @@ export class BackendApiService {
 
   public saveReference(reference: Ireference) {
     this._http.post(this._localhost + 'Reference', reference).subscribe()
+  }
+
+  public getNews(): Observable<InewsGet[]> {
+    return this._http.get<InewsGet[]>(this._localhost + 'News');
+  }
+
+  public saveNews(news: Inews) : void {
+    this._http.post(this._localhost + 'News', news).subscribe()
   }
 
 

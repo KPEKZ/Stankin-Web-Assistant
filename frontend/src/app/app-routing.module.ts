@@ -4,6 +4,7 @@ import { AcademicPerfomanceComponent } from './components/academic-perfomance/ac
 import { CuratorComponent } from './components/curator/curator.component';
 import { HeadmenComponent } from './components/headmen/headmen.component';
 import { ListGroupComponent } from './components/list-group/list-group.component';
+import { NewsComponent } from './components/news/news/news.component';
 import { ProblemComponent } from './components/problem/problem.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ReferenceComponent } from './components/reference/reference.component';
@@ -17,23 +18,7 @@ const routes: Routes = [
     path: 'auth',
     component: AuthComponent
   },
-  {
-    path: 'teachers',
-    canActivate: [AuthGuard],
 
-    children: [
-      {
-        path: '',
-        component: TeacherComponent,
-      },
-
-      {
-        path: 'detail/:id',
-        component: TeacherDetailComponent,
-
-      }
-    ]
-  },
   {
     path: 'references',
     component: ReferenceComponent,
@@ -69,6 +54,38 @@ const routes: Routes = [
     component: AcademicPerfomanceComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'news',
+
+    children: [
+      {
+        path: '',
+        component: NewsComponent,
+       // canActivate: [AuthGuard],
+      }
+    ]
+
+  },
+
+  {
+    path: 'teachers',
+    canActivate: [AuthGuard],
+
+    children: [
+      {
+        path: '',
+        component: TeacherComponent,
+      },
+
+      {
+        path: 'detail/:id',
+        component: TeacherDetailComponent,
+
+      }
+    ]
+  },
+
+
   {
     path: '**',
     redirectTo: 'auth'
