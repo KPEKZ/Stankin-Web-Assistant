@@ -31,7 +31,7 @@ SWA – веб-приложение помощник для первокурсн
 ![image](https://user-images.githubusercontent.com/31378456/170855401-b824c722-feb6-48dd-814b-eb21182a090c.png)
 
 ## Поиск куратора
-
+Данные парсятся с файла excel на сервере.
 ![image](https://user-images.githubusercontent.com/31378456/170855434-1d6630c0-cabd-4d6c-b087-a4bc647079be.png)
 
 ## Одногрупники
