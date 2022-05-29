@@ -1,0 +1,11 @@
+<section>
+  <h1>Куратор</h1>
+
+  <ng-container *ngIf="text.length > 0 && text !== 'Undefind' ">
+    <h2>{{text}}</h2>
+  </ng-container>
+  <ng-container *ngIf="!text || text === 'Undefind'">
+    <h2>Пока куратор не наайдйен</h2>
+  </ng-container>
+
+</section>

@@ -1,0 +1,33 @@
+
+:host {
+  table {
+    width: 100%;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    align-items: center;
+  }
+
+  button {
+    background-color: #fff;
+    color: #303030;
+  }
+
+  .demo-button {
+    height: min-content;
+  }
+
+  .save-button {
+    margin-top: 20px;
+    background-color: #fff;
+    color: #303030;
+  }
+
+  .empy {
+    padding: 15px;
+  }
+
+}

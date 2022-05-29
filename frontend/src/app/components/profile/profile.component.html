@@ -1,0 +1,60 @@
+<ng-container *ngIf="isLoading">
+  <mat-spinner [ngStyle]="{'position': 'absolute', 'translate': 'transformX(-50%)', 'top': '50px', 'right' : '50%'}"></mat-spinner>
+</ng-container>
+
+
+<ng-container *ngIf="!isLoading">
+  <form class="profile-form" [formGroup]="form" #profileForm (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" >
+      <mat-label>Логин</mat-label>
+      <input matInput name="login" formControlName="login">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Пароль</mat-label>
+      <input type="password" matInput name="password" formControlName="password">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Имя</mat-label>
+      <input type="text" matInput name="userName" formControlName="firstName">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Фаимлия</mat-label>
+      <input type="text" matInput name="userSecondName" formControlName="secondName">
+    </mat-form-field>
+    <mat-form-field appearance="fill" >
+      <mat-label>Отчество</mat-label>
+      <input type="text" matInput name="userPatronimyc" formControlName="patronymic">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput name="email" formControlName="e_mail">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Группа</mat-label>
+      <input type="text" matInput name="group" formControlName="group">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Права</mat-label>
+      <mat-select formControlName="permission" #selection>
+        <mat-option value="read" selected>Пользователь</mat-option>
+        <mat-option value="write">Запись и чтение</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Телефон</mat-label>
+      <span matPrefix>+7 &nbsp;</span>
+      <input type="tel" matInput name="phone" formControlName="phoneNumber">
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Роль</mat-label>
+      <mat-select formControlName="roleName" #selection>
+        <mat-option value="student" selected>Студент</mat-option>
+        <mat-option value="admin">Администратор</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="profile-form__actions">
+      <button type="submit" mat-raised-button>Сохранить</button>
+    </div>
+  </form>
+</ng-container>

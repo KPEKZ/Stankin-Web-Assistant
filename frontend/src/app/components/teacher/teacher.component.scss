@@ -1,0 +1,21 @@
+:host {
+  .teacher-container {
+    table {
+      width: 100%;
+    }
+    td, th {
+      width: 25%;
+    }
+    tr {
+      &:hover {
+        cursor: pointer;
+        background-color: #978d8d;
+      }
+    }
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+}

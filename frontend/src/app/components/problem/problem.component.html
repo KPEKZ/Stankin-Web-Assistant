@@ -1,0 +1,82 @@
+<ng-container *ngIf="isLoading">
+  <mat-spinner [ngStyle]="{'position': 'absolute', 'translate': 'transformX(-50%)', 'top': '50px', 'right' : '50%'}"></mat-spinner>
+</ng-container>
+
+<ng-container *ngIf="!isLoading">
+  <div *ngIf="dataSource">
+
+    <div class="actions" *ngIf="isAdmin">
+      <button mat-raised-button (click)="addData(type,dep,room,phone)" class="demo-button">
+        Добавить
+      </button>
+      <button
+          mat-raised-button
+          [disabled]="!dataSource.length"
+          (click)="removeData()"
+          class="demo-button">
+        Удалить
+      </button>
+      <mat-form-field>
+        <mat-label>Тип проблемы</mat-label>
+        <input type="text" matInput #type>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Отдел</mat-label>
+        <input type="text" matInput #dep>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Кабинет</mat-label>
+        <input type="text" matInput #room>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Телефон</mat-label>
+        <input type="text" matInput #phone>
+      </mat-form-field>
+    </div>
+
+    <table mat-table *ngIf="dataSource.length > 0" [dataSource]="dataSource">
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Тип проблемы</th>
+        <td mat-cell  *matCellDef="let row">
+          {{row.type}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef>Отдел</th>
+        <td mat-cell  *matCellDef="let row">
+          {{row.department}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="audience">
+        <th mat-header-cell *matHeaderCellDef> Кабинет </th>
+        <td mat-cell  *matCellDef="let row">
+          {{row.audience}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef> Телефон</th>
+        <td mat-cell  *matCellDef="let row">
+          {{row.phoneNumber}}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <button class="save-button" *ngIf="isAdmin" mat-raised-button (click)="onSave()" >Сохранить</button>
+
+  </div>
+
+</ng-container>
+
+
+
+<div *ngIf="dataSource.length === 0" class="empy">
+  <h1>Пусто</h1>
+</div>

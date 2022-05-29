@@ -1,0 +1,30 @@
+
+<ng-container *ngIf="!isLoading">
+  <app-news-item *ngFor="let item of news" [title]="item.name" [description]="item.discription"></app-news-item>
+
+
+  <section class="news-create" *ngIf="isAdmin">
+  <h2>Создать новость</h2>
+  <form [formGroup]="form">
+    <mat-form-field appearance="fill">
+      <mat-label>Название</mat-label>
+      <input type="tel" matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Описание</mat-label>
+      <textarea matInput type="tel" matInput formControlName="description"></textarea>
+    </mat-form-field>
+  </form>
+  <button class="add-button" mat-fab color="primary" (click)="onSave()">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  </section>
+</ng-container>
+
+
+
+
+<ng-container *ngIf="isLoading">
+  <mat-spinner [ngStyle]="{'position': 'absolute', 'translate': 'transformX(-50%)', 'top': '50px', 'right' : '50%'}"></mat-spinner>
+</ng-container>

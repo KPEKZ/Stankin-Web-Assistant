@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Frontend</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="./assets/Logo.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="mat-typography">
+  <style>
+    @keyframes pulse {
+      50% {
+          opacity: 0.3;
+    }
+  }
+
+    .app-loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.5s linear;
+      background-color: #303030;
+      color: rgb(255, 255, 255);
+  }
+
+  .app-loading.hidden{
+      opacity: 0;
+  }
+
+  .app-loading .static-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      font-family: Roboto, Arial, Helvetica, sans-serif;
+      font-size: 25px;
+      opacity: 0.9;
+  }
+
+  .app-loading .static-content span {
+      display: block;
+      width: 100%;
+  }
+
+  .app-loading .static-content span.title {
+      padding-bottom: 20px;
+      font-size: 30px;
+  }
+
+  .app-loading .static-content span.loading{
+      padding-top: 30px;
+      animation: pulse 1.5s infinite linear;
+  }
+
+  .app-loading .static-content img {
+      align-self: center;
+      height: 110px;
+      opacity: 0.87;
+  }
+
+  </style>
+  <app-root>
+  <div class="app-loading">
+    <div class="static-content">
+        <span class="title">Stankin Web Assistant</span>
+        <img src="./assets/Logo.png" alt="">
+    </div>
+</div>
+</app-root>
+</body>
+</html>
