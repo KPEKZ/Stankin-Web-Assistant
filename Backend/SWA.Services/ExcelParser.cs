@@ -136,8 +136,8 @@ namespace SWA.Services
 
                                             for (int k = 0; k < count; k++)
                                             {
-                                                result[k] += " " + str2[k].Text + "\n";
-                                                res += result[k];
+                                                result[k] +=  " " + str2[k].Text + "\n";
+                                                res += $"{k + 1} {result[k]}";
                                             }
 
                                             return res;
