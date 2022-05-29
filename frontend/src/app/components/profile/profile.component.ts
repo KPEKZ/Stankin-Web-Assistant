@@ -72,7 +72,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!this.form.invalid) [
+    if (!this.form.invalid) {
       this._backendApi.changeUserInfo({
         UserID:this.userId,
         Login:this.form.value.login,
@@ -85,8 +85,9 @@ export class ProfileComponent implements OnInit {
         PhoneNumber: this.form.value.phoneNumber,
         RoleName: this.form.value.roleName,
         Permission: this.form.value.permission
-      })
-    ]
+      });
+      this._auth.userAdmin.next(this.form.value.RoleName === 'admin' ? true : false);
+    }
   }
 
 }

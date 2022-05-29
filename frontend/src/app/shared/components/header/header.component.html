@@ -2,28 +2,34 @@
   <button mat-flat-button (click)="onToggle()" color="primary" ><mat-icon>menu</mat-icon></button>
   <span class="header-brand">Stankin Web Assistant</span>
   <mat-list class="header-navigation">
-    <mat-list-item>
+    <mat-list-item class="auth-item">
       <a class="navigation-link" mat-button routerLink="/auth" routerLinkActive="active">Authentication</a>
     </mat-list-item>
   </mat-list>
   <mat-list class="header-actions">
-    <mat-list-item>
+    <mat-list-item class="search">
       <mat-form-field appearance="standard">
         <mat-label>search</mat-label>
         <input matInput  placeholder="Ex. Mia" #input>
       </mat-form-field>
     </mat-list-item>
     <mat-list-item>
-      <mat-icon>more_vert</mat-icon>
+      <button class="icon-button" mat-icon-button [matMenuTriggerFor]="menuVert" color="accent">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menuVert="matMenu">
+        <a mat-menu-item routerLink="/auth" routerLink="active-invert">Authentication</a>
+        <button mat-menu-item (click)="onLogout()">Logout</button>
+      </mat-menu>
     </mat-list-item>
-    <mat-list-item *ngIf="user.secondName !== '' ">
+    <mat-list-item *ngIf="user.secondName !== '' " class="profile-firstName">
       {{user.secondName}}
     </mat-list-item>
-    <mat-list-item *ngIf="user.firstName !== '' ">
+    <mat-list-item *ngIf="user.firstName !== '' " class="profile-secondName">
       {{user.firstName}}
     </mat-list-item>
     <mat-list-item>
-      <button mat-mini-fab [matMenuTriggerFor]="menu" color="accent">
+      <button class="icon-button" mat-icon-button [matMenuTriggerFor]="menu" color="accent">
         <mat-icon >account_circle</mat-icon>
       </button>
     </mat-list-item>

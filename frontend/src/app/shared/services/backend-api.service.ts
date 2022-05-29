@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from '../models/employee';
 import { EmployeeDto } from '../models/employee-dto';
+import { problem } from '../models/problem';
 import { UserInfo } from '../models/user-info';
 import { UserInfoGet } from '../models/user-info-get';
 
@@ -44,7 +45,6 @@ export class BackendApiService {
   }
 
   public getHeadMen(groupName: string,id:number) {
-    console.log(groupName, groupName.toUpperCase());
     const year: number = parseInt('20' + groupName.toUpperCase().split('-')[1],10);
     const curYear: number = new Date().getFullYear();
     const lvl = curYear - year;
@@ -58,6 +58,21 @@ export class BackendApiService {
 
   public getUserPerfomance(id: number) {
     return this._http.get(this._localhost + `Excel/Progress/${id}/`, {responseType: 'text'});
+  }
+
+  public getUserCuratorById(userId: number) {
+    return this._http.get(this._localhost + `Excel/Curator/${userId}/`, {responseType: 'text'});
+  }
+
+  public getUserListGroup(userId:number, groupName:string) {
+    const year: number = parseInt('20' + groupName.toUpperCase().split('-')[1],10);
+    const curYear: number = new Date().getFullYear();
+    const lvl = curYear - year;
+    return this._http.get(this._localhost + `Excel/ListGroup/${userId}/${lvl}`, {responseType: 'text'});
+  }
+
+  public saveProblem(problem: problem) {
+    return this._http.post(this._localhost + 'Excel/Problem', problem).subscribe()
   }
 
 }

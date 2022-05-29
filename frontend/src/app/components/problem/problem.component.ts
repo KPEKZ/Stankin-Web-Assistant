@@ -48,4 +48,15 @@ export class ProblemComponent implements OnInit {
     this.table.renderRows();
   }
 
+  onSave() {
+    for(let problem of this.dataSource) {
+      this._backendApi.saveProblem({
+        Type: problem.type,
+        Department: problem.department,
+        Audience: problem.room,
+        PhoneNumber: problem.phone
+      });
+    }
+  }
+
 }

@@ -14,6 +14,9 @@ import { ProblemComponent } from './components/problem/problem.component';
 import { HeadmenComponent } from './components/headmen/headmen.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AcademicPerfomanceComponent } from './components/academic-perfomance/academic-perfomance.component';
+import { CuratorComponent } from './components/curator/curator.component';
+import { ListGroupComponent } from './components/list-group/list-group.component';
+import { TeacherDetailComponent } from './components/teacher/teacher-detail/teacher-detail.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { AcademicPerfomanceComponent } from './components/academic-perfomance/ac
     ProblemComponent,
     HeadmenComponent,
     ProfileComponent,
-    AcademicPerfomanceComponent
+    AcademicPerfomanceComponent,
+    CuratorComponent,
+    ListGroupComponent,
+    TeacherDetailComponent
   ],
   imports: [
     BrowserModule,

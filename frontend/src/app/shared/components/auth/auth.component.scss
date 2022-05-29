@@ -4,7 +4,7 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 500px;
     background: darkgrey;
     justify-content: center;
     -webkit-box-shadow: 11px 13px 8px 0px rgba(2, 3, 4, 0.2);
@@ -16,6 +16,16 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .auth-form {
+      width: 80%;
+
+      .auth-form__actions button {
+        word-wrap: break-word;
+      }
     }
   }
 }
