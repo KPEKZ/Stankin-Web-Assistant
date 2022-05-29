@@ -1,6 +1,5 @@
-<app-news-item></app-news-item>
-<app-news-item></app-news-item>
-<app-news-item></app-news-item>
+<app-news-item *ngFor="let item of news" [title]="item.name" [description]="item.discription"></app-news-item>
+
 
 <section class="news-create" *ngIf="isAdmin">
 <h2>Создать новость</h2>

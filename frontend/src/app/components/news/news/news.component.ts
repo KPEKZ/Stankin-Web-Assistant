@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/components/auth/auth.service';
+import { InewsGet } from 'src/app/shared/models/news-get';
 import { BackendApiService } from 'src/app/shared/services/backend-api.service';
 
 @Component({
@@ -10,6 +11,8 @@ import { BackendApiService } from 'src/app/shared/services/backend-api.service';
 })
 export class NewsComponent implements OnInit {
   public isAdmin = this._auth._isAdmin;
+  public news: InewsGet[] = [];
+  public cachedNews: EventEmitter<InewsGet> = new EventEmitter<InewsGet>();
 
   public form: FormGroup = new FormGroup({
     name: new FormControl(null, Validators.required),
@@ -23,15 +26,23 @@ export class NewsComponent implements OnInit {
 
   ngOnInit(): void {
     this._auth.userAdmin.subscribe(isAdmin => this.isAdmin = isAdmin);
-
+    this._backendApi.getNews().subscribe(news => this.news = news);
+    this.cachedNews.subscribe(news => {
+      this.news.push(news);
+    });
   }
 
   onSave(): void {
     if (this.form.valid) {
       this._backendApi.saveNews({
         Name: this.form.value.name,
-        Description: this.form.value.description
-      })
+        Discription: this.form.value.description
+      });
+      this.cachedNews.emit({
+        name: this.form.value.name,
+        discription: this.form.value.description
+      });
+      this.form.reset();
     }
 
   }
