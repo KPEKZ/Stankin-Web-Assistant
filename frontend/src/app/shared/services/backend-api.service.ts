@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { Employee } from '../models/employee';
 import { EmployeeDto } from '../models/employee-dto';
 import { problem } from '../models/problem';
+import { problemGet } from '../models/problem-get';
+import { Ireference } from '../models/reference';
+import { IreferenceGet } from '../models/reference-get';
 import { UserInfo } from '../models/user-info';
 import { UserInfoGet } from '../models/user-info-get';
 
@@ -72,7 +75,20 @@ export class BackendApiService {
   }
 
   public saveProblem(problem: problem) {
-    return this._http.post(this._localhost + 'Excel/Problem', problem).subscribe()
+    this._http.post(this._localhost + 'Problem', problem).subscribe()
   }
+
+  public getProblems(): Observable<problemGet[]> {
+    return this._http.get<problemGet[]>(this._localhost + 'Problem');
+  }
+
+  public getReferences(): Observable<IreferenceGet[]> {
+    return this._http.get<IreferenceGet[]>(this._localhost + 'Reference');
+  }
+
+  public saveReference(reference: Ireference) {
+    this._http.post(this._localhost + 'Reference', reference).subscribe()
+  }
+
 
 }

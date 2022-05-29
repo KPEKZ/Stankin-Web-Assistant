@@ -19,13 +19,18 @@ const routes: Routes = [
   },
   {
     path: 'teachers',
-    component: TeacherComponent,
     canActivate: [AuthGuard],
+
     children: [
+      {
+        path: '',
+        component: TeacherComponent,
+      },
+
       {
         path: 'detail/:id',
         component: TeacherDetailComponent,
-        canActivate: [AuthGuard],
+
       }
     ]
   },

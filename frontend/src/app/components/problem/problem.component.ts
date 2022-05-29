@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/shared/components/auth/auth.service';
+import { problemGet } from 'src/app/shared/models/problem-get';
 import { BackendApiService } from 'src/app/shared/services/backend-api.service';
 
 @Component({
@@ -19,11 +21,9 @@ export class ProblemComponent implements OnInit {
     phone: string;
   }>;
 
-  public displayedColumns: string[] = ['type', 'department', 'room', 'phone'];
-  public dataSource  = [
-    {type: 'Утеря пропуска',department: 'Единый деканат', room: 'ауд. 233', phone: '+7(499)973-38-34'},
-    {type: 'Проблема с модульным журналом',department: 'Единый деканат', room: 'ауд. 233', phone: '+7(499)973-38-34'},
-    {type: 'Проблема с ЭОС',department: '-', room: 'ТП 3-9', phone: '-'},
+  public displayedColumns: string[] = ['type', 'department', 'audience', 'phoneNumber'];
+  public dataSource: problemGet[]  = [
+
   ];
 
   constructor(
@@ -33,13 +33,19 @@ export class ProblemComponent implements OnInit {
     this._auth.userAdmin.subscribe(isAdmin => {
       this.isAdmin = isAdmin;
     });
+    this._backendApi.getProblems()
+      .subscribe(problems => {
+        if (problems) {
+          this.dataSource.push(...problems);
+        }
+      });
   }
 
   ngOnInit(): void {
   }
 
   addData(type: HTMLInputElement, dep: HTMLInputElement, room: HTMLInputElement, phone: HTMLInputElement) {
-    this.dataSource.push({type: type.value, department: dep.value, room: room.value, phone: phone.value});
+    this.dataSource.push({type: type.value, department: dep.value, audience: room.value, phoneNumber: phone.value});
     this.table.renderRows();
   }
 
@@ -50,11 +56,12 @@ export class ProblemComponent implements OnInit {
 
   onSave() {
     for(let problem of this.dataSource) {
+      console.log(problem)
       this._backendApi.saveProblem({
         Type: problem.type,
         Department: problem.department,
-        Audience: problem.room,
-        PhoneNumber: problem.phone
+        Audience: problem.audience,
+        PhoneNumber: problem.phoneNumber
       });
     }
   }

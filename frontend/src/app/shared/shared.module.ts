@@ -20,6 +20,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatDividerModule,
     ReactiveFormsModule,
     RouterModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule
   ],
   providers: [
     BackendApiService,
@@ -69,7 +71,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatDividerModule,
     ReactiveFormsModule,
     RouterModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule
   ]
 })
 export class SharedModule { }
