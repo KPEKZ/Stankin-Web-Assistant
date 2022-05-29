@@ -11,7 +11,7 @@ using SWA.Database;
 namespace SWA.Database.Migrations
 {
     [DbContext(typeof(SWADbContext))]
-    [Migration("20220528205852_Init")]
+    [Migration("20220529014340_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,6 +74,27 @@ namespace SWA.Database.Migrations
                     b.HasKey("UserID");
 
                     b.ToTable("UserInfo");
+                });
+
+            modelBuilder.Entity("SWA.Database.Models.News", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Discription")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("News");
                 });
 
             modelBuilder.Entity("SWA.Database.Models.Problem", b =>
