@@ -49,6 +49,23 @@ namespace Backend.Controllers
             return response;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetReferences()
+        {
+            IActionResult response;
+            try
+            {
+                var reference = await _referenceRepository.GetReferencesAsync();
+                response = Ok(reference);
+            }
+            catch (Exception ex)
+            {
+                response = StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+            return response;
+        }
+
         [HttpPut("{Id}")]
         public async Task<IActionResult> UpdateReference(int Id, [FromBody] ReferenceDto reference)
         {
